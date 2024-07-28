@@ -18,6 +18,7 @@ if [[ -z "$admin_password" ]]; then
   admin_password=$(openssl rand -base64 12)
 fi
 
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 USER=$(whoami)
 # Example: /Users/rscaggs/git/anti-hero
 WORKDIR=$(pwd)
@@ -33,8 +34,9 @@ cd /var/lib/postgresql
 sudo -u postgres psql -c "ALTER USER postgres WITH PASSWORD '$admin_password';"
 sudo ufw allow 5432/tcp
 
-sudo sed -i "s|$old_listen_address|$new_listen_address|" "/etc/postgresql/14/main/postgresql.conf"
-sudo cp -rf "$WORKDIR/pg_hba.conf" /etc/postgresql/14/main/pg_hba.conf
+PG_DIR=$(find /etc/postgresql/ -maxdepth 1 -name "?[0-9]" -type d)
+sudo sed -i "s|$old_listen_address|$new_listen_address|" "$PG_DIR/main/postgresql.conf"
+sudo cp -rf "$SCRIPT_DIR/pg_hba.conf" $PG_DIR/main/pg_hba.conf
 sudo service postgresql restart
 
 echo "Installation complete!"
