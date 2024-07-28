@@ -15,7 +15,7 @@ read admin_password
 # If user did not enter a password, generate a random one
 if [[ -z "$admin_password" ]]; then
   admin_password=$(openssl rand -base64 12)
-
+fi
 
 USER=$(whoami)
 # Example: /Users/rscaggs/git/anti-hero
