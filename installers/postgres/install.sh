@@ -1,4 +1,5 @@
 #!/bin/bash
+[ "$UID" -eq 0 ] || exec sudo bash "$0" "$@"
 
 echo "----- Postgres Auto Installer -----"
 echo " "
@@ -9,7 +10,7 @@ echo " * Generates a random password / sets specified admin password"
 echo " * Enables Postgres network authentication"
 echo " "
 
-echo -n "Set admin password (Press ENTER for a random password to be generated): "
+echo -n "Set database password (Press ENTER for a random password to be generated): "
 read admin_password
 
 # If user did not enter a password, generate a random one
