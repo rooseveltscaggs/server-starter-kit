@@ -39,8 +39,9 @@ sudo sed -i "s|$old_listen_address|$new_listen_address|" "$PG_DIR/main/postgresq
 sudo cp -rf "$SCRIPT_DIR/pg_hba.conf" $PG_DIR/main/pg_hba.conf
 sudo service postgresql restart
 
+echo " "
 echo "Installation complete!"
-echo "You can use the following credentials to access the database:"
+echo "You can use the following credentials to access the database: "
 echo " "
 echo "Database username: postgres"
 echo "Database password: $admin_password"
