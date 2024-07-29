@@ -1,4 +1,5 @@
 #!/bin/bash
+user=$(whoami)
 [ "$UID" -eq 0 ] || exec sudo bash "$0" "$@"
 
 echo "----- Docker Auto Installer -----"
@@ -17,7 +18,6 @@ sudo apt install docker-ce
 
 echo "Docker has been installed!"
 
-user=$(whoami)
 echo -n "Add current user ($user) to Docker group? [Y/n]"
 read promote
 
