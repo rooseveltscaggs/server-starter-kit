@@ -34,7 +34,7 @@ cd /var/lib/postgresql
 sudo -u postgres psql -c "ALTER USER postgres WITH PASSWORD '$admin_password';"
 sudo ufw allow 5432/tcp
 
-PG_DIR=$(find /etc/postgresql/ -maxdepth 1 -name "?[0-9]" -type d)
+PG_DIR=$(find /etc/postgresql/ -maxdepth 1 -name "?[0-9]" -type d | head -1)
 sudo sed -i "s|$old_listen_address|$new_listen_address|" "$PG_DIR/main/postgresql.conf"
 sudo cp -rf "$SCRIPT_DIR/pg_hba.conf" $PG_DIR/main/pg_hba.conf
 sudo service postgresql restart

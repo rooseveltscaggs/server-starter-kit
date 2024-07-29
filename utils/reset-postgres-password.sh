@@ -13,7 +13,7 @@ if [[ -z "$pg_user" ]]; then
 fi
 
 echo -n "New database password (Press ENTER for a random password to be generated): "
-read admin_password
+read -s admin_password
 
 # If user did not enter a password, generate a random one
 if [[ -z "$admin_password" ]]; then
