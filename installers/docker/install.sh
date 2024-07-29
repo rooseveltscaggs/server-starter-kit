@@ -17,7 +17,7 @@ sudo apt install docker-ce
 
 echo "Docker has been installed!"
 
-
+user=$(whoami)
 echo -n "Add current user ($user) to Docker group? [Y/n]"
 read promote
 
